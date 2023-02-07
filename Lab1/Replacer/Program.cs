@@ -4,13 +4,13 @@ namespace OOP.Lab1;
 
 class Program
 {
+    private static ReplaceSettingsBuilder _settingsBuilder = new();
+
     static void Main( string[] args )
     {
-        var settings = new ReplaceSettings();
-
         try
         {
-            settings = BuildSettings( args );
+            _settingsBuilder.Build( args );
         }
         catch ( Exception ex )
         {
@@ -22,7 +22,7 @@ class Program
 
         try
         {
-            ThrowIfNotValid( settings );
+            _settingsBuilder.ThrowIfNotValid();
         }
         catch (Exception ex )
         {
@@ -30,6 +30,8 @@ class Program
             Console.WriteLine( ex.Message );
             return;
         }
+
+        ReplaceSettings settings = _settingsBuilder.Settings;
 
         using var inputFile = new StreamReader( settings.InputFilePath );
         using var outputFile = new StreamWriter( settings.OutputFilePath, false );
@@ -57,35 +59,6 @@ class Program
 
     private static void PrintHelp()
     {
-        var message = new StringBuilder();
-        
-        message.AppendLine( "Positional arguments are used:" );
-        message.AppendLine( "1) <input file>" );
-        message.AppendLine( "2) <output file>" );
-        message.AppendLine( "3) <search string>" );
-        message.AppendLine( "4) <replace string>" );
-
-        Console.WriteLine( message );
-    }
-
-    public static ReplaceSettings BuildSettings( string[] args )
-    {
-        var settings = new ReplaceSettings
-        {
-            InputFilePath = Path.GetFullPath( args[ 0 ] ),
-            OutputFilePath = Path.GetFullPath( args[ 1 ] ),
-            SearchString = args[ 2 ],
-            RepalceString = args[ 3 ]
-        };
-
-        return settings;
-    }
-
-    private static void ThrowIfNotValid( ReplaceSettings settings )
-    {
-        if (!File.Exists( settings.InputFilePath ) )
-        {
-            throw new FileNotFoundException( $"Input file not found at {settings.InputFilePath}" );
-        }
+        Console.WriteLine( _settingsBuilder.GetHelp() );
     }
 }
