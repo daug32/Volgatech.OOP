@@ -4,14 +4,9 @@ namespace OOP.Lab1;
 
 public class ReplaceSettingsBuilder
 {
-    public ReplaceSettings Settings { get; protected set; }
+    public ReplaceSettings Settings { get; protected set; } = new();
 
-    public ReplaceSettingsBuilder()
-    {
-        Settings = new ReplaceSettings();
-    }
-
-    public ReplaceSettings Build( string[] args )
+    public void Build( string[] args )
     {
         Settings.InputFilePath = Path.GetFullPath( args[ 0 ] );
         Settings.OutputFilePath = Path.GetFullPath( args[ 1 ] );
@@ -25,8 +20,6 @@ public class ReplaceSettingsBuilder
         {
             Settings.RepalceString = args[ 3 ];
         }
-
-        return Settings;
     }
 
     public void ThrowIfNotValid()

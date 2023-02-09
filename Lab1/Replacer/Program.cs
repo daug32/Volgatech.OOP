@@ -1,10 +1,8 @@
-﻿using System.Text;
-
-namespace OOP.Lab1;
+﻿namespace OOP.Lab1;
 
 class Program
 {
-    private static ReplaceSettingsBuilder _settingsBuilder = new();
+    private static readonly ReplaceSettingsBuilder _settingsBuilder = new();
 
     static void Main( string[] args )
     {
@@ -57,8 +55,5 @@ class Program
         }
     }
 
-    private static void PrintHelp()
-    {
-        Console.WriteLine( _settingsBuilder.GetHelp() );
-    }
+    private static void PrintHelp() => Console.WriteLine( _settingsBuilder.GetHelp() );
 }

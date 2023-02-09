@@ -5,7 +5,9 @@ VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lab1", "Lab1", "{DCF0DD32-C8A8-481E-9876-606E4D4B9017}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Replacer", "Lab1\Replacer\Replacer.csproj", "{6AB471DF-5E4F-4857-934D-45651D921323}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Replacer", "Lab1\Replacer\Replacer.csproj", "{2A9FE24E-F1E1-4662-A328-405BD3511BA4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Radix", "Lab1\Radix\Radix.csproj", "{4C58D97C-46D4-41B3-873F-F612F020CFB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,16 +15,21 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6AB471DF-5E4F-4857-934D-45651D921323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6AB471DF-5E4F-4857-934D-45651D921323}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6AB471DF-5E4F-4857-934D-45651D921323}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6AB471DF-5E4F-4857-934D-45651D921323}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A9FE24E-F1E1-4662-A328-405BD3511BA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A9FE24E-F1E1-4662-A328-405BD3511BA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A9FE24E-F1E1-4662-A328-405BD3511BA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A9FE24E-F1E1-4662-A328-405BD3511BA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C58D97C-46D4-41B3-873F-F612F020CFB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C58D97C-46D4-41B3-873F-F612F020CFB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C58D97C-46D4-41B3-873F-F612F020CFB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C58D97C-46D4-41B3-873F-F612F020CFB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{6AB471DF-5E4F-4857-934D-45651D921323} = {DCF0DD32-C8A8-481E-9876-606E4D4B9017}
+		{2A9FE24E-F1E1-4662-A328-405BD3511BA4} = {DCF0DD32-C8A8-481E-9876-606E4D4B9017}
+		{4C58D97C-46D4-41B3-873F-F612F020CFB4} = {DCF0DD32-C8A8-481E-9876-606E4D4B9017}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9685922C-C650-486F-822C-A0E97C67D1AB}
