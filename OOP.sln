@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Replacer", "Lab1\Replacer\R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Radix", "Lab1\Radix\Radix.csproj", "{4C58D97C-46D4-41B3-873F-F612F020CFB4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Inverse", "Lab1\Inverse\Inverse.vcxproj", "{C000EEC9-E75D-4807-8E62-FF2941D35B9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{4C58D97C-46D4-41B3-873F-F612F020CFB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C58D97C-46D4-41B3-873F-F612F020CFB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C58D97C-46D4-41B3-873F-F612F020CFB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C000EEC9-E75D-4807-8E62-FF2941D35B9E}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{C000EEC9-E75D-4807-8E62-FF2941D35B9E}.Debug|Any CPU.Build.0 = Debug|Win32
+		{C000EEC9-E75D-4807-8E62-FF2941D35B9E}.Release|Any CPU.ActiveCfg = Release|Win32
+		{C000EEC9-E75D-4807-8E62-FF2941D35B9E}.Release|Any CPU.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +36,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2A9FE24E-F1E1-4662-A328-405BD3511BA4} = {DCF0DD32-C8A8-481E-9876-606E4D4B9017}
 		{4C58D97C-46D4-41B3-873F-F612F020CFB4} = {DCF0DD32-C8A8-481E-9876-606E4D4B9017}
+		{C000EEC9-E75D-4807-8E62-FF2941D35B9E} = {DCF0DD32-C8A8-481E-9876-606E4D4B9017}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9685922C-C650-486F-822C-A0E97C67D1AB}
