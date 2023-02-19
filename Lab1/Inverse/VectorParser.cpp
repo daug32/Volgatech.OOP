@@ -45,7 +45,17 @@ std::vector<float> VectorParser::ParseFloatVectorFromLine(const std::string& lin
 		}
 
 		// Parsing
-		float number = std::stof(line.substr(startIndex, endIndex));
+		float number;
+		std::string strNumber = line.substr(startIndex, endIndex);
+		try
+		{
+			number = std::stof(strNumber);
+		}
+		catch (std::exception& ex)
+		{
+			throw std::invalid_argument("Can't parse. Value: " + strNumber);
+		}
+
 		result.push_back(number);
 	}
 
