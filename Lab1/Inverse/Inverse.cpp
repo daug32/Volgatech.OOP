@@ -1,74 +1,76 @@
 #include "Libs/Math.Matrix/Matrix.h"
+#include "VectorParser.h"
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <stdexcept>
 #include <string>
 #include <vector>
-using std::fstream;
-using std::string;
 using std::vector;
 
-vector<vector<float>> GetMatrix(fstream& input);
+Math::Matrix GetMatrix(std::fstream& input);
 void PrintMatrix(const Math::Matrix& matrix);
 
 int main(int argc, char* argv[])
 {
-	for (int i = 1; i < 7; i++)
+	if (argc < 2)
 	{
-		string path = "D:/Development/Projects/OOP/Lab1/Inverse/Tests/" + std::to_string(i) + ".txt";
-		fstream input(path, std::ios_base::in);
-		if (!input)
-		{
-			std::cout 
-				<< "Exception at test " << i << ". " 
-				<< "File not foudn. Path: " << path 
-				<< std::endl;
-
-			// return 1;
-			continue;
-		}
-
-		vector<vector<float>> matrixBuffer;
-		try
-		{
-			matrixBuffer = GetMatrix(input);
-		}
-		catch (std::exception& ex)
-		{
-			std::cout 
-				<< "Exception at test " << i << ". " 
-				<< ex.what() 
-				<< std::endl;
-
-			// return 1;
-			continue;
-		}
-
-		Math::Matrix matrix(matrixBuffer);
-		try
-		{
-			matrix = matrix.Inverse();
-		}
-		catch (std::exception& ex)
-		{
-			std::cout 
-				<< "Exception at test " << i << ". " 
-				<< ex.what() 
-				<< std::endl;
-
-			//return 1;
-			continue;
-		}
-
-		PrintMatrix(matrix);
-		std::cout << std::endl;
+		std::cout << "Path to the file with matrix is not specified";
 	}
+
+	std::string path = std::string(argv[1]);
+
+	std::fstream input(path, std::ios_base::in);
+	if (!input)
+	{
+		std::cout << "File not foudn. Path: " << path << std::endl;
+		return 1;
+	}
+
+	Math::Matrix matrix = GetMatrix(input);
+	try
+	{
+		matrix = matrix.Inverse();
+	}
+	catch (std::exception& ex)
+	{
+		std::cout << ex.what() << std::endl;
+		return 1;
+	}
+
+	PrintMatrix(matrix);
+	std::cout << std::endl;
 
 	return 0;
 }
 
+Math::Matrix GetMatrix(std::fstream& input)
+{
+	std::vector<std::vector<float>> matrixBuffer = VectorParser::Parse2DFloatVectorFromFile(input);
+
+	int width = 0;
+	if (matrixBuffer.size() > 0)
+	{
+		width = matrixBuffer[0].size();
+	}
+
+	for (auto& row : matrixBuffer)
+	{
+		if (row.size() != width)
+		{
+			std::string message = "Expected matrix width is " + std::to_string(width) + ", but got " + std::to_string(row.size());
+			throw std::invalid_argument(message);
+		}
+	}
+
+	return Math::Matrix(matrixBuffer);
+}
+
 void PrintMatrix(const Math::Matrix& matrix)
 {
+	int precision = std::cout.precision();
+	std::cout << std::fixed << std::setprecision(3);
+
 	for (auto& row : matrix.GetBuffer())
 	{
 		for (auto value : row)
@@ -78,85 +80,6 @@ void PrintMatrix(const Math::Matrix& matrix)
 
 		std::cout << std::endl;
 	}
-}
 
-vector<float> ParseFloatVector(const string& line)
-{
-	vector<float> result;
-
-	size_t size = line.size();
-	size_t startIndex = -1;
-	size_t endIndex = -1;
-
-	while (true)
-	{
-		// Prepare
-		startIndex = endIndex + 1;
-		if (startIndex >= size)
-		{
-			break;
-		}
-
-		// Skip whitespaces, find where a number starts
-		while (isspace(line[startIndex]))
-		{
-			startIndex++;
-			if (startIndex >= size)
-			{
-				break;
-			}
-		}
-
-		if (startIndex >= size)
-		{
-			break;
-		}
-
-		// Find where the number ends
-		endIndex = startIndex;
-		while (!isspace(line[endIndex]))
-		{
-			endIndex++;
-			if (endIndex >= size)
-			{
-				break;
-			}
-		}
-
-		// Parsing
-		float number = std::stof(line.substr(startIndex, endIndex));
-		result.push_back(number);
-	}
-
-	return result;
-}
-
-vector<vector<float>> GetMatrix(fstream& input)
-{
-	vector<vector<float>> result = {};
-
-	int width = 0;
-	std::string line;
-	while (std::getline(input, line))
-	{
-		vector<float> vector = ParseFloatVector(line);
-		if (vector.size() < 1)
-		{
-			continue;
-		}
-
-		if (width == 0)
-		{
-			width = vector.size();
-		}
-		else if (width != vector.size())
-		{
-			string message = "Expected matrix width is " + std::to_string(width) + ", but got " + std::to_string(vector.size());
-			throw std::invalid_argument(message);
-		}
-
-		result.push_back(vector);
-	}
-
-	return result;
+	std::cout << std::setprecision(precision);
 }

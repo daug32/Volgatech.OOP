@@ -75,6 +75,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>.\Debug</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -155,15 +156,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Inverse.cpp" />
-    <ClCompile Include="Libs\Math.Matrix\Math.cpp" />
     <ClCompile Include="Libs\Math.Matrix\Matrix.cpp" />
-    <ClCompile Include="Libs\Math.Matrix\Vector3.cpp" />
+    <ClCompile Include="VectorParser.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Libs\Math.Matrix\Math.h" />
     <ClInclude Include="Libs\Math.Matrix\Matrix.h" />
-    <ClInclude Include="Libs\Math.Matrix\stdafx.h" />
-    <ClInclude Include="Libs\Math.Matrix\Vector3.h" />
+    <ClInclude Include="VectorParser.h" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".clang-format" />

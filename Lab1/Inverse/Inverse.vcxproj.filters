@@ -24,28 +24,19 @@
     <ClCompile Include="Inverse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Libs\Math.Matrix\Math.cpp">
-      <Filter>Libs\Math.Matrix</Filter>
-    </ClCompile>
     <ClCompile Include="Libs\Math.Matrix\Matrix.cpp">
       <Filter>Libs\Math.Matrix</Filter>
     </ClCompile>
-    <ClCompile Include="Libs\Math.Matrix\Vector3.cpp">
-      <Filter>Libs\Math.Matrix</Filter>
+    <ClCompile Include="VectorParser.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Libs\Math.Matrix\Math.h">
-      <Filter>Libs\Math.Matrix</Filter>
-    </ClInclude>
     <ClInclude Include="Libs\Math.Matrix\Matrix.h">
       <Filter>Libs\Math.Matrix</Filter>
     </ClInclude>
-    <ClInclude Include="Libs\Math.Matrix\stdafx.h">
-      <Filter>Libs\Math.Matrix</Filter>
-    </ClInclude>
-    <ClInclude Include="Libs\Math.Matrix\Vector3.h">
-      <Filter>Libs\Math.Matrix</Filter>
+    <ClInclude Include="VectorParser.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
