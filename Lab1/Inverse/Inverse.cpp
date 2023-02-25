@@ -15,22 +15,21 @@ int main(int argc, char* argv[])
 {
 	if (argc < 2)
 	{
-		std::cout << "Path to the file with matrix is not specified";
+		std::cout << "Expected <input file name>" << std::endl;
 	}
 
 	std::string path = std::string(argv[1]);
-
 	std::fstream input(path, std::ios_base::in);
 	if (!input)
 	{
-		std::cout << "File not foudn. Path: " << path << std::endl;
+		std::cout << "File not found. Path: " << path << std::endl;
 		return 1;
 	}
 
-	Math::Matrix matrix = GetMatrix(input);
+	Math::Matrix matrix;
 	try
 	{
-		matrix = matrix.Inverse();
+		matrix = GetMatrix(input).Inverse();
 	}
 	catch (std::exception& ex)
 	{
@@ -39,7 +38,6 @@ int main(int argc, char* argv[])
 	}
 
 	PrintMatrix(matrix);
-	std::cout << std::endl;
 
 	return 0;
 }

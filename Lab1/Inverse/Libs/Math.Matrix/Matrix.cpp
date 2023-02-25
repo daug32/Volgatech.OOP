@@ -134,7 +134,7 @@ namespace Math
 			throw std::invalid_argument("Determinant is 0, there is no inverse matrix");
 		}
 
-		auto transponsed = Transponse();
+		Matrix transponsed = Transponse();
 		Matrix result(m_height, m_width);
 
 		int k = -1;
