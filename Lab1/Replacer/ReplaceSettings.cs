@@ -2,8 +2,8 @@
 
 public class ReplaceSettings
 {
-    public string InputFilePath { get; set; }
-    public string OutputFilePath { get; set; }
+    public string InputFilePath { get; set; } = "";
+    public string OutputFilePath { get; set; } = "";
     public string SearchString { get; set; } = "";
-    public string RepalceString { get; set; } = "";
+    public string ReplaceString { get; set; } = "";
 }

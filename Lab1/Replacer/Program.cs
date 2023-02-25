@@ -1,10 +1,25 @@
 ﻿namespace OOP.Lab1;
 
-class Program
+internal class Program
 {
     private static readonly ReplaceSettingsBuilder _settingsBuilder = new();
 
-    static void Main( string[] args )
+    private static void Main( string[] args )
+    {
+        if ( !RunTests() )
+        {
+            return;
+        }
+
+        Run( args );
+    }
+
+    private static bool RunTests()
+    {
+        return ReplacerTests.RunAll();
+    }
+
+    private static void Run( string[] args )
     {
         try
         {
@@ -12,20 +27,8 @@ class Program
         }
         catch ( Exception ex )
         {
-            Console.WriteLine( "An error occured while tried to parse arguments" );
             Console.WriteLine( ex.Message );
             PrintHelp();
-            return;
-        }
-
-        try
-        {
-            _settingsBuilder.ThrowIfNotValid();
-        }
-        catch (Exception ex )
-        {
-            Console.WriteLine( "An error occured while tried to check arguments validation" );
-            Console.WriteLine( ex.Message );
             return;
         }
 
@@ -34,26 +37,15 @@ class Program
         using var inputFile = new StreamReader( settings.InputFilePath );
         using var outputFile = new StreamWriter( settings.OutputFilePath, false );
 
-        ReplaceInFile(
+        Replacer.ReplaceInFile(
             inputFile,
             outputFile,
             settings.SearchString,
-            settings.RepalceString );
+            settings.ReplaceString );
     }
 
-    public static void ReplaceInFile(
-        StreamReader reader,
-        StreamWriter writer,
-        string search,
-        string replace )
+    private static void PrintHelp()
     {
-        while ( !reader.EndOfStream )
-        {
-            string line = reader.ReadLine()!;
-            line = line.Replace( search, replace );
-            writer.WriteLine( line );
-        }
+        Console.WriteLine( _settingsBuilder.GetHelp() );
     }
-
-    private static void PrintHelp() => Console.WriteLine( _settingsBuilder.GetHelp() );
 }

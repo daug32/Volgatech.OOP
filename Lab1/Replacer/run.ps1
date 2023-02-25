@@ -19,4 +19,7 @@ Invoke-Expression "& `"./$exe`" $command"
 $command = "$tests/5.txt $tests/5.output.txt long-long REPLACED"
 Invoke-Expression "& `"./$exe`" $command"
 
+$command = "$tests/6.txt $tests/6.output.txt `"`" REPLACED"
+Invoke-Expression "& `"./$exe`" $command"
+
 Pop-Location
