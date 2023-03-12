@@ -50,7 +50,7 @@ namespace Math
 	{
 		if (m_height != m_width)
 		{
-			throw std::invalid_argument("Can't calculate determinator for not sqгare matrix");
+			throw std::invalid_argument("Can't calculate determinator for not square matrix");
 		}
 
 		if (m_height == 1)
