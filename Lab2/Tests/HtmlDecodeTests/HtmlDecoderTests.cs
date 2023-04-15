@@ -5,6 +5,14 @@ namespace HtmlDecodeTests;
 
 public class HtmlDecoderTests
 {
+    private HtmlDecoder _htmlDecoder = null!;
+
+    [SetUp]
+    public void SetUp()
+    {
+        _htmlDecoder = new HtmlDecoder();
+    }
+    
     [Test]
     public void Decode_LineWithoutSpecialSymbols_SameLine()
     {
@@ -13,7 +21,7 @@ public class HtmlDecoderTests
         var expected = "Text";
 
         // Act
-        string result = HtmlDecoder.Decode( input );
+        string result = _htmlDecoder.Decode( input );
 
         // Assert
         Assert.AreEqual( expected, result );
@@ -27,7 +35,7 @@ public class HtmlDecoderTests
     public void Decode_LineWithEncodedSpecialSymbols_DecodedLine( string input, string expected )
     {
         // Act
-        string result = HtmlDecoder.Decode( input );
+        string result = _htmlDecoder.Decode( input );
 
         // Assert
         Assert.AreEqual( expected, result );
@@ -41,7 +49,7 @@ public class HtmlDecoderTests
         var expected = "<main> text </main>";
 
         // Act
-        string result = HtmlDecoder.Decode( input );
+        string result = _htmlDecoder.Decode( input );
 
         // Assert
         Assert.AreEqual( expected, result );
@@ -54,7 +62,7 @@ public class HtmlDecoderTests
         var input = String.Empty;
 
         // Act
-        string result = HtmlDecoder.Decode( input );
+        string result = _htmlDecoder.Decode( input );
 
         // Assert
         Assert.AreEqual( 0, result.Length );
@@ -107,12 +115,33 @@ public class HtmlDecoderTests
         {
             using ( TextWriter writer = new StringWriter() )
             {
-                HtmlDecoder.DecodeFile( reader, writer );
+                _htmlDecoder.Decode( reader, writer );
                 result = writer.ToString()!;
             }
         }
 
         // Assert
         Assert.AreEqual( expected, result );
+    }
+    
+    [TestCase( "&amp;", "&" )]
+    [TestCase( "&&&&&&&&amp;", "&&&&&&&&" )]
+    [TestCase( "&amp;;;;;;;;;;;;;;;;", "&;;;;;;;;;;;;;;;" )]
+    [TestCase( "&ampppppppppp;", "&ampppppppppp;" )]
+    public void DecodeFile_EncodedHtmlSymbols_DecodedHtmlSymbols( string encodedSymbol, string decodedSymbol )
+    {
+        // Act
+        string result;
+        using ( TextReader reader = new StringReader( encodedSymbol ) )
+        {
+            using ( TextWriter writer = new StringWriter() )
+            {
+                _htmlDecoder.Decode( reader, writer );
+                result = writer.ToString()!;
+            }
+        }
+
+        // Assert
+        Assert.AreEqual( decodedSymbol, result );
     }
 }

@@ -2,11 +2,11 @@ using System.Text;
 
 namespace Lab2.HtmlDecode;
 
-public static class HtmlDecoder
+public class HtmlDecoder
 {
-    public static string ExitCode = "!q";
+    private readonly string _exitCode;
 
-    private static readonly Dictionary<string, string> _encodedHtmlSymbols = new()
+    private readonly Dictionary<string, string> _encodedHtmlSymbols = new()
     {
         { "&quot;", "\"" },
         { "&apos;", "\'" },
@@ -15,24 +15,28 @@ public static class HtmlDecoder
         { "&amp;", "&" }
     };
 
-    private static readonly string _encodingEndSymbol = ";";
-    private static readonly string _encodingStartSymbol = "&";
+    private const string EncodingEndSymbol = ";";
+    private const string EncodingStartSymbol = "&";
+
+    public HtmlDecoder( string exitCode = "!q" )
+    {
+        _exitCode = exitCode;
+    }
 
     /// <summary>Read the text to the end or before entering the exit code</summary>
-    public static void DecodeFile( TextReader reader, TextWriter writer )
+    public void Decode( TextReader reader, TextWriter writer )
     {
         var builder = new StringBuilder();
 
         string? line = reader.ReadLine();
-        bool isEnd = line != null && line != ExitCode;
+        bool isEnd = line != null && line != _exitCode;
 
         while ( isEnd )
         {
             builder.Append( Decode( line ) );
             line = reader.ReadLine();
 
-            isEnd = line != null && line != ExitCode;
-            
+            isEnd = line != null && line != _exitCode;
             if ( isEnd )
             {
                 builder.Append( Environment.NewLine );
@@ -45,7 +49,7 @@ public static class HtmlDecoder
         }
     }
 
-    public static string Decode( string line )
+    public string Decode( string line )
     {
         var builder = new StringBuilder();
 
@@ -54,7 +58,7 @@ public static class HtmlDecoder
 
         while ( endIndex < line.Length )
         {
-            startIndex = line.IndexOf( _encodingStartSymbol, endIndex, StringComparison.Ordinal );
+            startIndex = GetIndexOfLastOccurrence( line, EncodingStartSymbol, endIndex );
             if ( startIndex < 0 )
             {
                 builder.Append( line.Substring( endIndex ) );
@@ -67,7 +71,7 @@ public static class HtmlDecoder
                 builder.Append( line.Substring( endIndex, startIndex - endIndex ) );
             }
 
-            endIndex = line.IndexOf( _encodingEndSymbol, startIndex, StringComparison.Ordinal );
+            endIndex = line.IndexOf( EncodingEndSymbol, startIndex, StringComparison.Ordinal );
             if ( endIndex < 0 )
             {
                 builder.Append( line.Substring( startIndex ) );
@@ -75,11 +79,42 @@ public static class HtmlDecoder
             }
 
             string code = line.Substring( startIndex, endIndex - startIndex + 1 );
-            builder.Append( _encodedHtmlSymbols[code] );
+            builder.Append( GetDecodedSymbol( code ) );
 
             endIndex++;
         }
 
         return builder.ToString();
+    }
+
+    private string GetDecodedSymbol( string code )
+    {
+        return _encodedHtmlSymbols.TryGetValue( code, out string result )
+            ? result
+            : code;
+    }
+
+    private int GetIndexOfLastOccurrence( string line, string targetOccurrence, int startIndex )
+    {
+        int index = line.IndexOf( targetOccurrence, startIndex, StringComparison.Ordinal );
+        if ( index < 0 )
+        {
+            return index;
+        }
+        
+        while ( index < line.Length )
+        {
+            bool startsWith = line
+                .Substring( index )
+                .StartsWith( targetOccurrence );
+            if ( !startsWith )
+            {
+                return index - 1;
+            }
+
+            index += targetOccurrence.Length;
+        }
+
+        return startIndex;
     }
 }
