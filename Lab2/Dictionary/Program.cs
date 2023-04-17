@@ -1,56 +1,35 @@
 using Dictionary.Models;
-using Dictionary.Repositories;
 using Dictionary.Repositories.Implementation;
 using Dictionary.Services;
 using Dictionary.Services.Implementation;
 
 namespace Dictionary;
 
-internal class Program
+public class Program
 {
-    private static readonly IUserInterfaceHandler _userInterfaceHandler = new UserInterfaceHandler(
-        Console.In,
-        Console.Out );
-
-    private static readonly ITranslationRepository _translationRepository = new TranslationRepository( "" );
-
     internal static void Main()
     {
-        _userInterfaceHandler.PrintProcessStartedMessage();
+        BuildApplication()
+            .Start();
+    }
 
-        while ( true )
-        {
-            string englishPhrase = _userInterfaceHandler.AskForPhrase();
-            if ( englishPhrase == _userInterfaceHandler.ExitCommand )
-            {
-                break;
-            }
+    private static DictionaryApplication BuildApplication()
+    {
+        IUserInterfaceHandler userInterfaceHandler = new UserInterfaceHandler( Console.In, Console.Out );
 
-            Translation? translation = _translationRepository.GetByEnglishPhrase( englishPhrase );
-            if ( translation == null )
-            {
-                _userInterfaceHandler.PrintTranslationNotFoundMessage();
+        var translationFileDatabase = "D:/Development/Projects/OOP/Lab2/Dictionary/translations.txt";
 
-                string russianTranslation = _userInterfaceHandler.AskForPhrase();
+        var memoryRepository = new MemoryRepository<Translation>();
+        var fileRepository = new FileRepository<Translation>(
+            translationFileDatabase,
+            new TranslationSerializer() );
 
-                _translationRepository.Add(
-                    new Translation
-                    {
-                        EnglishPhrase = englishPhrase,
-                        RussianTranslations = new List<string> { russianTranslation }
-                    } );
+        var translationRepository = new TranslationRepository(
+            memoryRepository,
+            fileRepository );
 
-                continue;
-            }
-
-            _userInterfaceHandler.PrintTranslations( translation.RussianTranslations );
-        }
-
-        if ( _translationRepository.HasChanges )
-        {
-            _translationRepository.SaveChanges();
-        }
-
-        _userInterfaceHandler.PrintProcessCompletedMessage();
+        return new DictionaryApplication(
+            userInterfaceHandler,
+            translationRepository );
     }
 }
