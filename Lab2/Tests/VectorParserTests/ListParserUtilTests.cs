@@ -16,10 +16,10 @@ public class ListParserUtilTests
         List<double> result = ListParserUtil.ParseListFromLine( line );
 
         // Assert
-        Assert.AreEqual( expected.Count, result.Count );
+        Assert.That( result, Has.Count.EqualTo(expected.Count));
         for ( var i = 0; i < expected.Count; i++ )
         {
-            Assert.AreEqual( expected[i], result[i] );
+            Assert.That( result[i], Is.EqualTo(expected[i]));
         }
     }
 
@@ -34,10 +34,10 @@ public class ListParserUtilTests
         List<double> result = ListParserUtil.ParseListFromLine( line );
 
         // Assert
-        Assert.AreEqual( expected.Count, result.Count );
+        Assert.That( result, Has.Count.EqualTo(expected.Count));
         for ( var i = 0; i < expected.Count; i++ )
         {
-            Assert.AreEqual( expected[i], result[i] );
+            Assert.That( result[i], Is.EqualTo(expected[i]));
         }
     }
 
@@ -52,10 +52,10 @@ public class ListParserUtilTests
         List<double> result = ListParserUtil.ParseListFromLine( line );
 
         // Assert
-        Assert.AreEqual( expected.Count, result.Count );
+        Assert.That( result, Has.Count.EqualTo( expected.Count ) );
         for ( var i = 0; i < expected.Count; i++ )
         {
-            Assert.AreEqual( expected[i], result[i] );
+            Assert.That( result[i], Is.EqualTo( expected[i] ) );
         }
     }
 
@@ -79,6 +79,6 @@ public class ListParserUtilTests
         List<double> result = ListParserUtil.ParseListFromLine( line );
 
         // Assert
-        Assert.AreEqual( 0, result.Count );
+        Assert.That( result, Is.Empty );
     }
 }

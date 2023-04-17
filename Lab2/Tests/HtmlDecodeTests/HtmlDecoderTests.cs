@@ -126,6 +126,7 @@ public class HtmlDecoderTests
     
     [TestCase( "&amp;", "&" )]
     [TestCase( "&&&&&&&&amp;", "&&&&&&&&" )]
+    [TestCase( "test &&&&&&&&amp;", "test &&&&&&&&" )]
     [TestCase( "&amp;;;;;;;;;;;;;;;;", "&;;;;;;;;;;;;;;;" )]
     [TestCase( "&ampppppppppp;", "&ampppppppppp;" )]
     public void DecodeFile_EncodedHtmlSymbols_DecodedHtmlSymbols( string encodedSymbol, string decodedSymbol )
