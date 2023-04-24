@@ -4,14 +4,14 @@ namespace Dictionary.Repositories.Implementation;
 
 public class TranslationRepository : ITranslationRepository
 {
-    private readonly IRepository<Translation> _cacheRepository;
+    private readonly IRepository<Translation> _cashedTranslationsRepository;
     private readonly IRepository<Translation> _databaseRepository;
 
     public TranslationRepository(
-        IRepository<Translation> cacheRepository,
+        IRepository<Translation> cashedTranslationsRepository,
         IRepository<Translation> databaseRepository )
     {
-        _cacheRepository = cacheRepository;
+        _cashedTranslationsRepository = cashedTranslationsRepository;
         _databaseRepository = databaseRepository;
     }
 
@@ -29,7 +29,7 @@ public class TranslationRepository : ITranslationRepository
 
     public List<Translation> GetAll()
     {
-        return _cacheRepository
+        return _cashedTranslationsRepository
             .GetAll()
             .Union( _databaseRepository.GetAll() )
             .ToList();
@@ -37,37 +37,37 @@ public class TranslationRepository : ITranslationRepository
 
     public Translation? GetBy( Func<Translation, bool> predicate )
     {
-        return _cacheRepository.GetBy( predicate ) ??
+        return _cashedTranslationsRepository.GetBy( predicate ) ??
                _databaseRepository.GetBy( predicate );
     }
 
     public void Add( Translation entity )
     {
         HasChanges = true;
-        _cacheRepository.Add( entity );
+        _cashedTranslationsRepository.Add( entity );
     }
 
     public void Add( List<Translation> entities )
     {
         HasChanges = true;
-        _cacheRepository.Add( entities );
+        _cashedTranslationsRepository.Add( entities );
     }
 
     public void Commit()
     {
-        foreach ( Translation translation in _cacheRepository.GetAll() )
+        foreach ( Translation translation in _cashedTranslationsRepository.GetAll() )
         {
             _databaseRepository.Add( translation );
         }
         
         HasChanges = false;
-        _cacheRepository.Clear();
+        _cashedTranslationsRepository.Clear();
     }
 
     public void Clear()
     {
         HasChanges = false;
-        _cacheRepository.Clear();
+        _cashedTranslationsRepository.Clear();
         _databaseRepository.Clear();
     }
 }

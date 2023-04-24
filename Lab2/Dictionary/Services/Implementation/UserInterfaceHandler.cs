@@ -2,15 +2,11 @@ namespace Dictionary.Services.Implementation;
 
 public class UserInterfaceHandler : IUserInterfaceHandler
 {
-    private readonly TextReader _inputStream;
-    private readonly TextWriter _outputStream;
-
-    public UserInterfaceHandler(
-        TextReader inputStream,
-        TextWriter outputStream )
+    private readonly IUIManager _uiManager;
+    
+    public UserInterfaceHandler( IUIManager uiManager )
     {
-        _inputStream = inputStream;
-        _outputStream = outputStream;
+        _uiManager = uiManager;
     }
 
     private static string ConfirmCommand => "yes";
@@ -19,36 +15,36 @@ public class UserInterfaceHandler : IUserInterfaceHandler
 
     public string AskForPhrase( string language )
     {
-        _outputStream.WriteLine( $"Enter {language} phrase to translate" );
+        _uiManager.WriteLine( $"Enter {language} phrase to translate" );
         return AskForPhraseWithoutPrintingMessage();
     }
 
     public string AskForPhraseWithoutPrintingMessage()
     {
-        return _inputStream.ReadLine()!;
+        return _uiManager.ReadLine()!;
     }
 
     public bool AskToSave()
     {
-        _outputStream.WriteLine(
+        _uiManager.WriteLine( 
             $"Exit code was entered, but there are unsaved changes. Type \"{ConfirmCommand}\" to save it." );
-        string command = _inputStream.ReadLine()!.ToLower();
+        string command = _uiManager.ReadLine()!.ToLower();
         return command == ConfirmCommand;
     }
 
     public void PrintApplicationStartedMessage()
     {
-        _outputStream.WriteLine( $"Dictionary application has started. Write \"{ExitCommand}\" to exit" );
+        _uiManager.WriteLine( $"Dictionary application has started. Write \"{ExitCommand}\" to exit" );
     }
 
     public void PrintApplicationCompletedMessage()
     {
-        _outputStream.WriteLine( "Application closed." );
+        _uiManager.WriteLine( "Application closed." );
     }
 
     public void PrintPhraseIgnoredMessage( string englishPhrase )
     {
-        _outputStream.WriteLine( $"Phrase {englishPhrase} was ignored." );
+        _uiManager.WriteLine( $"Phrase {englishPhrase} was ignored." );
     }
 
     public void PrintTranslationNotFoundMessage( string phrase, bool appendNewline )
@@ -57,20 +53,20 @@ public class UserInterfaceHandler : IUserInterfaceHandler
 
         if ( appendNewline )
         {
-            _outputStream.WriteLine( message );
+            _uiManager.WriteLine( message );
             return;
         }
 
-        _outputStream.Write( message );
+        _uiManager.Write( message );
     }
 
     public void PrintEmptyPhraseEnteredMessage()
     {
-        _outputStream.WriteLine( "Empty phrase was entered. It will not be processed." );
+        _uiManager.WriteLine( "Empty phrase was entered. It will not be processed." );
     }
 
     public void PrintTranslation( string translation )
     {
-        _outputStream.WriteLine( translation );
+        _uiManager.WriteLine( translation );
     }
 }

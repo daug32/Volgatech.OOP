@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmlDecode", "Lab2\HtmlDeco
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dictionary", "Lab2\Dictionary\Dictionary.csproj", "{9CAE1C7C-2BE2-4883-87B5-4499083AB119}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionaryApplicationTests", "Lab2\Tests\DictionaryApplicationTests\DictionaryApplicationTests.csproj", "{12DFE281-AB3A-4EEF-AB78-368214188E76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{9CAE1C7C-2BE2-4883-87B5-4499083AB119}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CAE1C7C-2BE2-4883-87B5-4499083AB119}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CAE1C7C-2BE2-4883-87B5-4499083AB119}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12DFE281-AB3A-4EEF-AB78-368214188E76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12DFE281-AB3A-4EEF-AB78-368214188E76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12DFE281-AB3A-4EEF-AB78-368214188E76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12DFE281-AB3A-4EEF-AB78-368214188E76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +83,7 @@ Global
 		{4FDA7F52-F6B6-4FDF-82D2-E6C18912BCF4} = {AD15C333-47E4-4395-BB99-DA5A6409728E}
 		{27E0138B-DB7B-4FDA-82D1-21CC523D370C} = {AD15C333-47E4-4395-BB99-DA5A6409728E}
 		{9CAE1C7C-2BE2-4883-87B5-4499083AB119} = {AD15C333-47E4-4395-BB99-DA5A6409728E}
+		{12DFE281-AB3A-4EEF-AB78-368214188E76} = {9D644588-88EE-4724-AA67-76D59792DFD9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9685922C-C650-486F-822C-A0E97C67D1AB}

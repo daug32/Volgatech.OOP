@@ -15,7 +15,7 @@ public class Program
 
     private static DictionaryApplication BuildApplication()
     {
-        IUserInterfaceHandler userInterfaceHandler = new UserInterfaceHandler( Console.In, Console.Out );
+        IUserInterfaceHandler userInterfaceHandler = new UserInterfaceHandler( new ConsoleUIManager() );
 
         var translationFileDatabase = "D:/Development/Projects/OOP/Lab2/Dictionary/translations.txt";
 
