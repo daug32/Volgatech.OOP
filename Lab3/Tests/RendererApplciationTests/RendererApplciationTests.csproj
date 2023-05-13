@@ -6,6 +6,10 @@
         <Nullable>enable</Nullable>
 
         <IsPackable>false</IsPackable>
+
+        <AssemblyName>RendererApplicationTests</AssemblyName>
+
+        <RootNamespace>RendererApplicationTests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\PrimeNumbersGenerator\PrimeNumbersGenerator.csproj"/>
+        <ProjectReference Include="..\..\RendererApplication\RendererApplication.csproj"/>
     </ItemGroup>
 
 </Project>
