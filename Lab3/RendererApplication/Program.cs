@@ -20,7 +20,7 @@ internal class Program
 
     private static IHost BuildHost( string[] args )
     {
-        RendererSettings rendererSettings = RendererSettingBuilder.Build( args );
+        RendererSettings rendererSettings = RendererSettingsBuilder.Build( args );
         
         return Host.CreateDefaultBuilder()
             .ConfigureServices(

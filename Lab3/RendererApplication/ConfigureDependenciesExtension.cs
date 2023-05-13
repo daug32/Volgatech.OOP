@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
+using Renderer.Models.Canvases;
+using Renderer.Models.Canvases.Implementation;
 using RendererApplication.Models;
-using RendererApplication.Models.Canvases;
 
 namespace RendererApplication;
 
@@ -10,16 +11,18 @@ public static class ConfigureDependenciesExtension
         this IServiceCollection services,
         RendererSettings rendererSettings )
     {
-        services.AddSingleton<RendererApplication>( serviceProvider =>
-        {
-            ICCanvas canvas = serviceProvider.GetRequiredService<ICCanvas>();
-            
-            return new RendererApplication( canvas, rendererSettings );
-        } );
-        
-        services.AddScoped<ICCanvas, CCanvas>( _ => new CCanvas(
-            RendererSettings.DefaultCanvasWidth, 
-            RendererSettings.DefaultCanvasHeight ) );
+        services.AddSingleton(
+            serviceProvider =>
+            {
+                ICanvas canvas = serviceProvider.GetRequiredService<ICanvas>();
+
+                return new RendererApplication( canvas, rendererSettings );
+            } );
+
+        services.AddScoped<ICanvas, CCanvas>(
+            _ => new CCanvas(
+                RendererSettings.DefaultCanvasWidth,
+                RendererSettings.DefaultCanvasHeight ) );
 
         return services;
     }

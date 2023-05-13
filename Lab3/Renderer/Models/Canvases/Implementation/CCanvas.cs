@@ -1,8 +1,8 @@
-using RendererApplication.Extensions;
+using Renderer.Extensions;
 
-namespace RendererApplication.Models.Canvases;
+namespace Renderer.Models.Canvases.Implementation;
 
-public class CCanvas : ICCanvas
+public class CCanvas : ICanvas
 {
     private const char DefaultBackground = ' ';
     private List<string> _buffer = null!;

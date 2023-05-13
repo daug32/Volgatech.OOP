@@ -2,7 +2,7 @@ using RendererApplication.Models;
 
 namespace RendererApplication.Builders;
 
-public class RendererSettingBuilder
+public class RendererSettingsBuilder
 {
     public static RendererSettings Build( string[] args )
     {

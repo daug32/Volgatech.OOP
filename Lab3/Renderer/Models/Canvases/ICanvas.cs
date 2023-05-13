@@ -1,6 +1,6 @@
-namespace RendererApplication.Models.Canvases;
+namespace Renderer.Models.Canvases;
 
-public interface ICCanvas
+public interface ICanvas
 {
     int Width { get; }
     int Height { get; }

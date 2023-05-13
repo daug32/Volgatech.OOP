@@ -1,8 +1,8 @@
 using System.Numerics;
 
-namespace RendererApplication.Models.Shapes;
+namespace Renderer.Models.Shapes.SolidShapes;
 
-public interface ICRectangle
+public interface ICRectangle : ISolidShape
 {
     public int Width { get; set; }
     public int Height { get; set; }
@@ -14,9 +14,6 @@ public interface ICRectangle
     public int Top { get; set; }
     public int Right { get; set; }
     public int Bottom { get; set; }
-
-    public float Area { get; }
-    public float Perimeter { get; }
 
     public ICRectangle GetIntersection( ICRectangle rectangle );
     bool DoesIntersect( ICRectangle rect );

@@ -1,8 +1,8 @@
 using System.Numerics;
 using NUnit.Framework;
-using RendererApplication.Models.Shapes;
+using Renderer.Models.Shapes.SolidShapes;
 
-namespace RendererApplicationTests;
+namespace RendererTests;
 
 public class CRectangleTests
 {

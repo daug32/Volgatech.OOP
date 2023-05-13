@@ -1,6 +1,7 @@
 using System.Numerics;
+using Renderer.Models.Canvases;
 
-namespace RendererApplication.Models.Shapes;
+namespace Renderer.Models.Shapes.SolidShapes;
 
 public class CRectangle : ICRectangle
 {
@@ -14,7 +15,7 @@ public class CRectangle : ICRectangle
     {
         _rawWidth = width;
         _rawHeight = height;
-        
+
         Move = start;
         Scale = Vector2.One;
     }
@@ -87,7 +88,11 @@ public class CRectangle : ICRectangle
     }
 
     public float Area => Width * Height;
+    
     public float Perimeter => 2 * ( Width + Height );
+
+
+    public char FillColor { get; set; }
 
     public ICRectangle GetIntersection( ICRectangle rect )
     {
@@ -95,7 +100,7 @@ public class CRectangle : ICRectangle
         {
             return new CRectangle( 0, 0, Vector2.Zero );
         }
-        
+
         int top = Math.Min( Top, rect.Top );
         int left = Math.Max( Left, rect.Left );
         int right = Math.Min( Right, rect.Right );
@@ -103,7 +108,7 @@ public class CRectangle : ICRectangle
 
         int width = right - left;
         int height = top - bottom;
-        
+
         return new CRectangle(
             width,
             height,
@@ -118,5 +123,16 @@ public class CRectangle : ICRectangle
             && rect.Left <= Right
             && Top >= rect.Bottom
             && rect.Top >= Bottom;
+    }
+
+    public void RenderAt( ICanvas canvas )
+    {
+        for ( int y = Bottom; y < Top; y++ )
+        {
+            for ( int x = Left; x < Right; x++ )
+            {
+                canvas.SetPixel( x, y, FillColor );
+            }
+        }
     }
 }
