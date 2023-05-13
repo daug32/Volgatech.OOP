@@ -4,8 +4,8 @@ public class RendererSettings
 {
     public string? FilePath { get; set; }
 
-    public int DefaultCanvasWidth => 60;
-    public int DefaultCanvasHeight => 20;
+    public static int DefaultCanvasWidth => 60;
+    public static int DefaultCanvasHeight => 20;
     
     public bool NeedToUseFile => !String.IsNullOrWhiteSpace( FilePath );
 }

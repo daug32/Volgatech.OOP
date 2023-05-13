@@ -1,7 +1,7 @@
 using RendererApplication.Models.Canvases;
 using RendererApplication.Models.Shapes;
 
-namespace RendererApplication.Models.Extensions;
+namespace RendererApplication.Extensions;
 
 public static class ICRectangleExtensions
 {

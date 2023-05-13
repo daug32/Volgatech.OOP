@@ -18,8 +18,8 @@ public static class ConfigureDependenciesExtension
         } );
         
         services.AddScoped<ICCanvas, CCanvas>( _ => new CCanvas(
-            rendererSettings.DefaultCanvasWidth, 
-            rendererSettings.DefaultCanvasHeight ) );
+            RendererSettings.DefaultCanvasWidth, 
+            RendererSettings.DefaultCanvasHeight ) );
 
         return services;
     }

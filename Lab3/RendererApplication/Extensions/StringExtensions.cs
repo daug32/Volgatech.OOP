@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace RendererApplication.Models.Extensions;
+namespace RendererApplication.Extensions;
 
 public static class StringExtensions
 {

@@ -1,8 +1,8 @@
 using System.Numerics;
 using System.Text;
+using RendererApplication.Extensions;
 using RendererApplication.Models;
 using RendererApplication.Models.Canvases;
-using RendererApplication.Models.Extensions;
 using RendererApplication.Models.Shapes;
 
 namespace RendererApplication;

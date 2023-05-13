@@ -1,11 +1,11 @@
-using RendererApplication.Models.Extensions;
+using RendererApplication.Extensions;
 
 namespace RendererApplication.Models.Canvases;
 
 public class CCanvas : ICCanvas
 {
-    private const char Background = ' ';
-    private List<string> _buffer;
+    private const char DefaultBackground = ' ';
+    private List<string> _buffer = null!;
 
     public CCanvas( int width, int height )
     {
@@ -25,7 +25,7 @@ public class CCanvas : ICCanvas
         }
     }
 
-    public void Clear( char code = ' ' )
+    public void Clear( char code = DefaultBackground )
     {
         Fill( code );
     }
@@ -64,7 +64,7 @@ public class CCanvas : ICCanvas
 
         for ( var y = 0; y < height; y++ )
         {
-            var line = new string( Background, width );
+            var line = new string( DefaultBackground, width );
             _buffer.Add( line );
         }
         
