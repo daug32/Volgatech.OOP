@@ -6,10 +6,6 @@
         <Nullable>enable</Nullable>
 
         <IsPackable>false</IsPackable>
-
-        <AssemblyName>RendererTests</AssemblyName>
-
-        <RootNamespace>RendererTests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -21,6 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\RendererApplication\RendererApplication.csproj" />
       <ProjectReference Include="..\..\Renderer\Renderer.csproj" />
     </ItemGroup>
 

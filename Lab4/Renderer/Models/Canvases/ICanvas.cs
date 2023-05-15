@@ -1,19 +1,20 @@
 using System.Numerics;
+using Renderer.Colors;
 
-namespace Renderer.Models.Canvases;
+namespace Renderer.Canvases;
 
 public interface ICanvas
 {
-    int Width { get; }
-    int Height { get; }
+    Vector2 Size { get; }
+    CanvasType CanvasType { get; }
 
-    void Write( StreamWriter writer );
+    void Draw();
+    void Clear();
 
-    void Clear( char code = ' ' );
-
-    void SetPixel( int x, int y, char code );
-
-    char GetPixel( int x, int y );
-    
-    void DrawLine( Vector2 from, Vector2 to );
+    void SetPixel( Vector2 point, Color? color );
+    char GetPixel( Vector2 point );
+    void FillPolygon( Vector2 from, Vector2 to, Color? color );
+    void DrawLine( Vector2 from, Vector2 to, Color? color );
+    void DrawCircle( Vector2 center, float radius, Color? color );
+    void FillCircle( Vector2 center, float radius, Color? color );
 }

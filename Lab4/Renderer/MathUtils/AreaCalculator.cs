@@ -13,4 +13,14 @@ public class AreaCalculator
 
         return ( float )Math.Sqrt( s * ( s - a ) * ( s - b ) * ( s - c ) );
     }
+
+    public static float CalculateForCircle( float radius )
+    {
+        return ( float )( Math.PI * radius * radius );
+    }
+
+    public static float CalculateForRectangle( int width, int height )
+    {
+        return width * height;
+    }
 }

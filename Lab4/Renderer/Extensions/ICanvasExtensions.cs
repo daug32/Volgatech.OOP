@@ -1,5 +1,5 @@
-using Renderer.Models.Canvases;
-using Renderer.Models.Shapes;
+using Renderer.Canvases;
+using Renderer.Shapes;
 
 namespace Renderer.Extensions;
 
