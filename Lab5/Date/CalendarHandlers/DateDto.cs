@@ -1,4 +1,4 @@
-namespace Date;
+namespace Date.CalendarHandlers;
 
 public readonly struct DateDto
 {
