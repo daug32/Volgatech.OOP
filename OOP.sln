@@ -85,6 +85,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyListTests", "Lab7\Tests\M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyListTask.Console", "Lab7\MyListTask.Console\MyListTask.Console.csproj", "{5E98A21B-D27C-459F-9D44-8FA04CBD3633}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FindMaxTask", "Lab7\Tests\FindMaxTask\FindMaxTask.vcxproj", "{37047877-0E7A-4C5C-852C-1C30C62A118E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -191,6 +193,10 @@ Global
 		{5E98A21B-D27C-459F-9D44-8FA04CBD3633}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E98A21B-D27C-459F-9D44-8FA04CBD3633}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E98A21B-D27C-459F-9D44-8FA04CBD3633}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37047877-0E7A-4C5C-852C-1C30C62A118E}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{37047877-0E7A-4C5C-852C-1C30C62A118E}.Debug|Any CPU.Build.0 = Debug|Win32
+		{37047877-0E7A-4C5C-852C-1C30C62A118E}.Release|Any CPU.ActiveCfg = Release|Win32
+		{37047877-0E7A-4C5C-852C-1C30C62A118E}.Release|Any CPU.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -227,6 +233,7 @@ Global
 		{E396D5D1-5A2F-4212-A006-F1EAF5FAAE61} = {674B6429-F593-462B-A72C-25CF88835C94}
 		{8BD9AFC4-EFAC-4EC4-BCDE-023E6DABB8B5} = {E396D5D1-5A2F-4212-A006-F1EAF5FAAE61}
 		{5E98A21B-D27C-459F-9D44-8FA04CBD3633} = {674B6429-F593-462B-A72C-25CF88835C94}
+		{37047877-0E7A-4C5C-852C-1C30C62A118E} = {E396D5D1-5A2F-4212-A006-F1EAF5FAAE61}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9685922C-C650-486F-822C-A0E97C67D1AB}
