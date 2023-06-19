@@ -73,6 +73,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpUrlTests", "Lab6\Tests\HttpUrlTests\HttpUrlTests.csproj", "{236B0424-33FC-47BB-BDE4-29D31B10A7FB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lab7", "Lab7", "{674B6429-F593-462B-A72C-25CF88835C94}"
+	ProjectSection(SolutionItems) = preProject
+		Lab7\lab07.docx = Lab7\lab07.docx
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyListTask", "Lab7\MyListTask\MyListTask.csproj", "{1945A39B-BF46-48F1-8C4F-D9066D2271C0}"
 EndProject
